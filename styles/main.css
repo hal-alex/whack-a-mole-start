@@ -1,0 +1,15 @@
+#divs-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 500px;
+    height: auto;
+    margin: 0 auto;
+}
+
+#divs-grid>div {
+    border: 1px solid black;
+    width: calc(100% / 5 - 5px);
+    height: 30px;
+    flex-wrap: wrap;
+}
