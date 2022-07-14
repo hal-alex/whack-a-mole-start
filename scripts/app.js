@@ -6,9 +6,6 @@ function init() {
     let scoreSpan = document.querySelector(".score")
     let livesSpan = document.querySelector(".lives")
     let divOne = document.getElementById("1")
-    console.log(divOne)
-    let testingClass = document.getElementsByClassName("testingclass")
-    console.log(divOne.hasChildNodes())
     let buttonEl = document.createElement("button")
     buttonEl.classList.add("moleButton")
     buttonEl.innerHTML = "Hello"
@@ -20,9 +17,11 @@ function init() {
 
     function randomIDGenerator () {
         let randomNum = Math.floor(Math.random() * 24 + 1)
+        
         if (randomNum === previousLocation) {
             console.log("matches")
             randomIDGenerator()
+
         }
         return randomNum
     }
@@ -35,22 +34,21 @@ function init() {
     function beginGame() {
         divOne = document.getElementById(`${randomIDGenerator()}`)
         divOne.appendChild(buttonEl)
-        // while (livesRemaining > 0) {
-        //     setTimeout(() => {
-        //         moveLocation
-        //     }, 2000); }
-
-            
-        // }
-        // setInterval(() => {
-        //     moveLocation ()
-        //     // Check if divOne has a child element, if so, remove life 
-        //     if (divOne.hasChildNodes()) {
-        //         console.log("hello if statement")
-        //         livesRemaining -= 1
-        //         livesSpan.innerHTML = livesRemaining
-        //     }
-        // }, timer)
+        let timer = setInterval(() => {
+            if (livesRemaining > 0) {
+                // Check if divOne has a child element, if so, remove life 
+                if (divOne.hasChildNodes()) {
+                    moveLocation ()
+                    console.log("hello if statement")
+                    livesRemaining -= 1
+                    livesSpan.innerHTML = livesRemaining
+                }
+                moveLocation ()
+            } else {
+                window.alert("Game over!")
+                clearInterval(timer)
+            }
+        }, 2000)
     }
 
     function buttonClicked () {
